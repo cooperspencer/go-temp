@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	tempProcessed = prometheus.NewGauge(prometheus.GaugeOpts{Name: "Temperature"})
+	tempProcessed = prometheus.NewGauge(prometheus.GaugeOpts{Name: "temperature"})
 )
 
 func main() {
@@ -30,6 +30,7 @@ func main() {
 			t, err := ds18b20.Temperature(sensor)
 			if err == nil {
 				tempProcessed.Set(t)
+				prometheus.MustRegister(tempProcessed)
 			}
 		}
 		time.Sleep(15 * time.Minute)
