@@ -16,12 +16,12 @@ var (
 
 func main() {
 	sensors, err := ds18b20.Sensors()
-	registered := false
 	if err != nil {
 		panic(err)
 	}
 
 	fmt.Printf("sensor IDs: %v\n", chameleon.BCyan(sensors))
+	prometheus.MustRegister(tempProcessed)
 
 	http.Handle("/metrics", promhttp.Handler())
 	go http.ListenAndServe(":8080", nil)
@@ -31,11 +31,6 @@ func main() {
 			t, err := ds18b20.Temperature(sensor)
 			if err == nil {
 				tempProcessed.Set(t)
-				if registered {
-					prometheus.Unregister(tempProcessed)
-				}
-				prometheus.MustRegister(tempProcessed)
-				registered = true
 			}
 		}
 		time.Sleep(15 * time.Minute)
