@@ -33,6 +33,6 @@ func main() {
 				tempProcessed.Set(t)
 			}
 		}
-		time.Sleep(15 * time.Minute)
+		time.Sleep(15 * time.Second)
 	}
 }
