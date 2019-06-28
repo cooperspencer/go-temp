@@ -30,4 +30,4 @@ scrape_configs:
 
 # Grafana
 After adding Prometheus as a Datasource in Grafana, one can create a graph like the following:
-[GRAFANA](pics/grafana.png)
+![GRAFANA](pics/grafana.png)
