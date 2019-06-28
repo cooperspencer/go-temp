@@ -1,6 +1,6 @@
 This is a tool to get the temperature with a raspberry from an ds18b20 temperature sensor.
 
-#Stuff to do on the raspberry
+# Stuff to do on the raspberry
 ```
 sudo echo dtoverlay=w1-gpio-pullup,gpiopin=4 >> /boot/config.txt
 sudo modprobe w1_gpio && sudo modprobe w1_therm
@@ -15,7 +15,7 @@ I added the following to the crontab on the raspberry:
 @reboot sleep 30 && /home/pi/git/go-temp/go-temp
 ```
 
-#Prometheus
+# Prometheus
 My Prometheus config looks like this:
 ```
 global:
@@ -28,6 +28,6 @@ scrape_configs:
         - "RASPBERRY:8080"
 ```
 
-#Grafana
+# Grafana
 After adding Prometheus as a Datasource in Grafana, one can create a graph like the following:
-[![GRAFANA](pics/grafana.png)]
+[GRAFANA](pics/grafana.png)
